@@ -134,7 +134,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.example.proyectofinalbancouq/co.edu.uniquindio.proyectofinalbancouq.HelloApplication
+                                co.edu.uniquindio.proyectofinalbancouq.aplicacion.MainApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
