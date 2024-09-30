@@ -14,5 +14,9 @@ module co.edu.uniquindio.proyectofinalbancouq {
 
     opens co.edu.uniquindio.proyectofinalbancouq to javafx.fxml;
     exports co.edu.uniquindio.proyectofinalbancouq;
+    exports co.edu.uniquindio.proyectofinalbancouq.model;
+    opens co.edu.uniquindio.proyectofinalbancouq.model to javafx.fxml;
+    exports co.edu.uniquindio.proyectofinalbancouq.controllers;
+    opens co.edu.uniquindio.proyectofinalbancouq.controllers to javafx.fxml;
 
 }

@@ -1,5 +1,6 @@
-package co.edu.uniquindio.proyectofinalbancouq;
+package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
+import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
