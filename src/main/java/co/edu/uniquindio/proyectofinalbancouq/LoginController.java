@@ -52,7 +52,7 @@ public class LoginController {
 
     private void cargarPaginaPrincipal() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("PrincipalView.fxml")); // Ajusta el nombre del archivo según tu proyecto
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PrincipalView.fxml")); // Ajusta el nombre del archivo según tu proyecto
             VBox pantallaPrincipal = loader.load();
             Scene escenaPrincipal = new Scene(pantallaPrincipal);
             Stage stage = (Stage) campoID.getScene().getWindow();
@@ -65,7 +65,7 @@ public class LoginController {
     @FXML
     private void irARegistro() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistroView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RegistroView.fxml"));
             VBox pantallaRegistro = loader.load();
             Scene escenaRegistro = new Scene(pantallaRegistro);
             Stage stage = (Stage) campoID.getScene().getWindow();

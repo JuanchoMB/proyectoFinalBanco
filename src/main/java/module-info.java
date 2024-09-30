@@ -10,9 +10,9 @@ module co.edu.uniquindio.proyectofinalbancouq {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires java.logging;
 
     opens co.edu.uniquindio.proyectofinalbancouq to javafx.fxml;
     exports co.edu.uniquindio.proyectofinalbancouq;
-
 
 }

@@ -10,7 +10,7 @@ public class AppPrincipal extends Application {
 
     @Override
     public void start(Stage escenarioPrincipal) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         VBox raiz = loader.load();
         Scene escena = new Scene(raiz);
 

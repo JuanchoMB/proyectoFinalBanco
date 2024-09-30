@@ -9,10 +9,10 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.Label;
+import persistencia.Persistencia;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class RegistroController {
 
@@ -26,7 +26,7 @@ public class RegistroController {
     public Label etiquetaMensaje;
 
     // Lista estática para almacenar los usuarios registrados
-    private static List<Usuario> usuariosRegistrados = new ArrayList<>();
+    private static LinkedList<Usuario> usuariosRegistrados = new LinkedList<>();
 
     // Método para registrar un usuario
     public void registrarUsuario(ActionEvent event) {
@@ -49,7 +49,13 @@ public class RegistroController {
             usuariosRegistrados.add(nuevoUsuario);
 
             etiquetaMensaje.setText("Usuario registrado: " + nuevoUsuario); // Mostrar mensaje
-            limpiarCampos();
+
+            Persistencia persistencia = new Persistencia();
+            try {
+                persistencia.guardarUsuario(Usuario);
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
 
         } catch (Exception e) {
             etiquetaMensaje.setText("Error al registrar el usuario: " + e.getMessage()); // Mostrar mensaje
@@ -61,7 +67,7 @@ public class RegistroController {
     public void volverALogin(ActionEvent event) {
         try {
             // Cargar la vista de inicio de sesión
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("LoginView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
             Parent loginRoot = loader.load();
 
             // Obtener el stage actual y cambiar la escena
@@ -87,7 +93,18 @@ public class RegistroController {
     }
 
     // Método para obtener la lista de usuarios registrados (opcional)
-    public static List<Usuario> getUsuariosRegistrados() {
+    public static LinkedList<Usuario> getUsuariosRegistrados() {
         return usuariosRegistrados;
     }
+    public void addUsuario( Usuario usuario) {
+
+        System.out.println("Usuario agregado");
+
+        Persistencia persistencia = new Persistencia();
+        try {
+            persistencia.guardarEmpleados(empresa.getEmpleados());
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 }
