@@ -8,19 +8,23 @@ public class Transaccion {
     private TipoTransaccion tipoTransaccion;
     private LocalDateTime fecha;
 
-    public Transaccion(String idTransaccion, double cantidad, TipoTransaccion tipoTransaccion, LocalDateTime fecha ) {
+    public Transaccion(String idTransaccion, double cantidad, TipoTransaccion tipoTransaccion, Object o) {
+        this.idTransaccion = idTransaccion;
         this.cantidad = cantidad;
         this.tipoTransaccion = tipoTransaccion;
         this.fecha = LocalDateTime.now();
     }
 
+    public String getIdTransaccion() {
+        return idTransaccion;
+    }
 
     public double getCantidad() {
         return cantidad;
     }
 
     public TipoTransaccion getTipo() {
-        return tipoTransaccion;
+        return tipoTransaccion;  // Asegúrate de que este método esté presente
     }
 
     public LocalDateTime getFecha() {
@@ -29,6 +33,6 @@ public class Transaccion {
 
     @Override
     public String toString() {
-        return tipoTransaccion + ": " + cantidad + " - " + fecha.toString();
+        return idTransaccion + " - " + tipoTransaccion + ": " + cantidad + " - " + fecha.toString();
     }
 }

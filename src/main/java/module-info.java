@@ -11,6 +11,7 @@ module co.edu.uniquindio.proyectofinalbancouq {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
     requires java.logging;
+    requires java.desktop;
 
     opens co.edu.uniquindio.proyectofinalbancouq to javafx.fxml;
     exports co.edu.uniquindio.proyectofinalbancouq;

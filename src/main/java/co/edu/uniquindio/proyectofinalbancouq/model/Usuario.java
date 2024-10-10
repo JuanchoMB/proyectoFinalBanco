@@ -55,13 +55,19 @@ public class Usuario {
 
     public void depositar(double cantidad) {
         saldo += cantidad;
-        transacciones.add(new Transaccion( cantidad, "Ingreso"));
+        String idTransaccion = "DEP-" + System.currentTimeMillis(); // Generar un ID único para la transacción
+        Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.DEPOSITO, null);
+        transacciones.add(nuevaTransaccion);
     }
 
     public void retirar(double cantidad) {
         if (cantidad <= saldo) {
             saldo -= cantidad;
-            transacciones.add(new Transaccion(cantidad, "Gasto"));
+            String idTransaccion = "RET-" + System.currentTimeMillis(); // Generar un ID único para la transacción
+            Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.RETIRO, null);
+            transacciones.add(nuevaTransaccion);
+        } else {
+            throw new IllegalArgumentException("Saldo insuficiente para realizar el retiro.");
         }
     }
 

@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
+import co.edu.uniquindio.proyectofinalbancouq.util.LogUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,9 +20,6 @@ public class LoginController {
     @FXML
     private Label etiquetaMensaje;
 
-    // No es necesario un gestor de usuarios separado si usamos RegistroController
-    // private GestorUsuarios gestorUsuarios = new GestorUsuarios();
-
     private Usuario usuarioActual;
 
     @FXML
@@ -29,15 +27,17 @@ public class LoginController {
         String id = campoID.getText();
         String contraseña = campoContraseña.getText();
 
-        // Verificar credenciales en la lista de usuarios registrados
         usuarioActual = verificarCredenciales(id, contraseña);
 
         if (usuarioActual != null) {
             etiquetaMensaje.setText("Inicio de sesión exitoso");
-            // Cambiar a la pantalla principal
+            // Registrar en el archivo Log el inicio de sesión
+            LogUtil.registrarAccion(usuarioActual.getId(), "Inicio de sesión exitoso");
             cargarPaginaPrincipal();
         } else {
             etiquetaMensaje.setText("ID o contraseña incorrectos");
+            // Registrar intento fallido
+            LogUtil.registrarAccion("Desconocido", "Intento de inicio de sesión fallido");
         }
     }
 
@@ -45,21 +45,22 @@ public class LoginController {
     private Usuario verificarCredenciales(String id, String contraseña) {
         for (Usuario usuario : RegistroController.getUsuariosRegistrados()) {
             if (usuario.getId().equals(id) && usuario.getContraseña().equals(contraseña)) {
-                return usuario; // Retornar el usuario si las credenciales son correctas
+                return usuario;
             }
         }
-        return null; // Retornar null si no se encuentra el usuario
+        return null;
     }
 
     private void cargarPaginaPrincipal() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PrincipalView.fxml")); // Ajusta el nombre del archivo según tu proyecto
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/PrincipalView.fxml"));
             VBox pantallaPrincipal = loader.load();
             Scene escenaPrincipal = new Scene(pantallaPrincipal);
             Stage stage = (Stage) campoID.getScene().getWindow();
             stage.setScene(escenaPrincipal);
         } catch (Exception e) {
-            e.printStackTrace();
+            // Registrar la excepción en el log
+            LogUtil.registrarExcepcion(e);
         }
     }
 
@@ -72,7 +73,7 @@ public class LoginController {
             Stage stage = (Stage) campoID.getScene().getWindow();
             stage.setScene(escenaRegistro);
         } catch (Exception e) {
-            e.printStackTrace();
+            LogUtil.registrarExcepcion(e);
         }
     }
 }

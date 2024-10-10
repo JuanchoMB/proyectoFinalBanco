@@ -1,7 +1,10 @@
 package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
+import co.edu.uniquindio.proyectofinalbancouq.model.TipoTransaccion;
 import co.edu.uniquindio.proyectofinalbancouq.model.Transaccion;
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
+import co.edu.uniquindio.proyectofinalbancouq.util.TransaccionUtil;
+import co.edu.uniquindio.proyectofinalbancouq.util.LogUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,32 +42,48 @@ public class MainController {
 
     @FXML
     private void manejarDeposito() {
-        // Lógica para agregar un depósito
-        usuarioActual.depositar(100.0); // Ejemplo de depósito
+        double cantidadDeposito = 100.0; // Ejemplo
+        usuarioActual.depositar(cantidadDeposito);
+        Transaccion transaccion = new Transaccion("DEP-" + System.currentTimeMillis(), cantidadDeposito, TipoTransaccion.DEPOSITO, null);
+
+        // Guardar la transacción
+        TransaccionUtil.guardarTransaccion(transaccion);
+
+        // Registrar en el archivo Log
+        LogUtil.registrarAccion(usuarioActual.getId(), "Depósito realizado: " + cantidadDeposito);
+
         actualizarUI();
     }
 
     @FXML
     private void manejarRetiro() {
-        // Lógica para retirar saldo
-        usuarioActual.retirar(50.0); // Ejemplo de retiro
-        actualizarUI();
+        double cantidadRetiro = 50.0; // Ejemplo
+        if (usuarioActual.getSaldo() >= cantidadRetiro) {
+            usuarioActual.retirar(cantidadRetiro);
+            Transaccion transaccion = new Transaccion("RET-" + System.currentTimeMillis(), cantidadRetiro, TipoTransaccion.RETIRO, null);
+
+            // Guardar la transacción
+            TransaccionUtil.guardarTransaccion(transaccion);
+
+            // Registrar en el archivo Log
+            LogUtil.registrarAccion(usuarioActual.getId(), "Retiro realizado: " + cantidadRetiro);
+
+            actualizarUI();
+        } else {
+            etiquetaMensaje.setText("Saldo insuficiente.");
+        }
     }
+
     public void volverALogin(ActionEvent event) {
         try {
-            // Cargar la vista de inicio de sesión
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
             Parent loginRoot = loader.load();
-
-            // Obtener el stage actual y cambiar la escena
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             Scene loginScene = new Scene(loginRoot);
             stage.setScene(loginScene);
             stage.show();
-
         } catch (IOException e) {
-            etiquetaMensaje.setText("Error al cargar la vista de inicio de sesión."); // Mostrar mensaje
-            e.printStackTrace();
+            LogUtil.registrarExcepcion(e);
         }
     }
 }
