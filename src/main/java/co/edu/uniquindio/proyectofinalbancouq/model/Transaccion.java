@@ -3,13 +3,14 @@ package co.edu.uniquindio.proyectofinalbancouq.model;
 import java.time.LocalDateTime;
 
 public class Transaccion {
+    private String idTransaccion;
     private double cantidad;
-    private String tipo;
+    private TipoTransferencia tipoTransferencia;
     private LocalDateTime fecha;
 
     public Transaccion(double cantidad, String tipo) {
         this.cantidad = cantidad;
-        this.tipo = tipo;
+        this.tipoTransferencia = tipoTransferencia;
         this.fecha = LocalDateTime.now();
     }
 
@@ -17,8 +18,8 @@ public class Transaccion {
         return cantidad;
     }
 
-    public String getTipo() {
-        return tipo;
+    public TipoTransferencia getTipo() {
+        return tipoTransferencia;
     }
 
     public LocalDateTime getFecha() {
@@ -27,6 +28,6 @@ public class Transaccion {
 
     @Override
     public String toString() {
-        return tipo + ": " + cantidad + " - " + fecha.toString();
+        return tipoTransferencia + ": " + cantidad + " - " + fecha.toString();
     }
 }
