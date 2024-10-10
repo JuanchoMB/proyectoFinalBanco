@@ -5,21 +5,22 @@ import java.time.LocalDateTime;
 public class Transaccion {
     private String idTransaccion;
     private double cantidad;
-    private TipoTransferencia tipoTransferencia;
+    private TipoTransaccion tipoTransaccion;
     private LocalDateTime fecha;
 
-    public Transaccion(double cantidad, String tipo) {
+    public Transaccion(String idTransaccion, double cantidad, TipoTransaccion tipoTransaccion, LocalDateTime fecha ) {
         this.cantidad = cantidad;
-        this.tipoTransferencia = tipoTransferencia;
+        this.tipoTransaccion = tipoTransaccion;
         this.fecha = LocalDateTime.now();
     }
+
 
     public double getCantidad() {
         return cantidad;
     }
 
-    public TipoTransferencia getTipo() {
-        return tipoTransferencia;
+    public TipoTransaccion getTipo() {
+        return tipoTransaccion;
     }
 
     public LocalDateTime getFecha() {
@@ -28,6 +29,6 @@ public class Transaccion {
 
     @Override
     public String toString() {
-        return tipoTransferencia + ": " + cantidad + " - " + fecha.toString();
+        return tipoTransaccion + ": " + cantidad + " - " + fecha.toString();
     }
 }

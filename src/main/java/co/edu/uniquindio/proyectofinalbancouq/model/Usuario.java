@@ -55,7 +55,7 @@ public class Usuario {
 
     public void depositar(double cantidad) {
         saldo += cantidad;
-        transacciones.add(new Transaccion(cantidad, "Ingreso"));
+        transacciones.add(new Transaccion( cantidad, "Ingreso"));
     }
 
     public void retirar(double cantidad) {
