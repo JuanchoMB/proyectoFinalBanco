@@ -29,6 +29,38 @@ public class Usuario {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public void setContraseña(String contraseña) {
+        this.contraseña = contraseña;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
+    }
+
+    public void setTransacciones(List<Transaccion> transacciones) {
+        this.transacciones = transacciones;
+    }
+
     public String getNombreCompleto() {
         return nombreCompleto;
     }

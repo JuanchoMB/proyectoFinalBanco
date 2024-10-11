@@ -86,4 +86,29 @@ public class MainController {
             LogUtil.registrarExcepcion(e);
         }
     }
+    @FXML
+    public void modificarDatosPersonales(ActionEvent event) {
+        try {
+            // Cargar la vista de modificación de datos
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/EditarUsuarioView.fxml"));
+            Parent root = loader.load();
+
+            // Obtener el controlador de la nueva vista
+            ModificarDatosController modificarController = loader.getController();
+            modificarController.setUsuarioActual(usuarioActual);
+
+            // Crear una nueva ventana para la modificación de datos
+            Stage stage = new Stage();
+            stage.setTitle("Modificar Datos Personales");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setUsuarioActual(Usuario usuario) {
+        this.usuarioActual = usuario;
+    }
 }
+

@@ -25,7 +25,7 @@ public class RegistroController {
     public TextField correoField;
     public TextField direccionField;
     public TextField telefonoField;
-    public PasswordField contrasenaField;
+    public TextField contrasenaField;
     public Label etiquetaMensaje;
 
     private static LinkedList<Usuario> usuariosRegistrados = new LinkedList<>();
