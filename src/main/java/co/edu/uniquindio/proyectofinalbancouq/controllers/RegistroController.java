@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
 public class RegistroController {
 
@@ -28,6 +29,8 @@ public class RegistroController {
     public Label etiquetaMensaje;
 
     private static LinkedList<Usuario> usuariosRegistrados = new LinkedList<>();
+
+
 
     public void registrarUsuario(ActionEvent event) {
         String nombre = nombreField.getText();
@@ -67,6 +70,10 @@ public class RegistroController {
 
     public static LinkedList<Usuario> getUsuariosRegistrados() {
         return usuariosRegistrados;
+    }
+    public static void setUsuariosRegistrados(List<Usuario> usuarios) {
+        usuariosRegistrados.clear();
+        usuariosRegistrados.addAll(usuarios);
     }
 
     public void volverALogin(ActionEvent event) {

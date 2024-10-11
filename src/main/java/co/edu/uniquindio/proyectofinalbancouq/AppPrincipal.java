@@ -1,7 +1,9 @@
 package co.edu.uniquindio.proyectofinalbancouq;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
+import co.edu.uniquindio.proyectofinalbancouq.util.ArchivoUtil;
 import co.edu.uniquindio.proyectofinalbancouq.util.SerializacionUtil;
+import co.edu.uniquindio.proyectofinalbancouq.controllers.RegistroController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -14,12 +16,16 @@ public class AppPrincipal extends Application {
 
     @Override
     public void start(Stage escenarioPrincipal) throws Exception {
+
+        // Cargar usuarios desde el archivo de texto
+        List<Usuario> usuarios = ArchivoUtil.cargarUsuarios();
+        RegistroController.setUsuariosRegistrados(usuarios); // Asegúrate de que este método esté definido en RegistroController
         // Cargar usuarios desde archivo binario o XML al iniciar
-        List<Usuario> usuarios = SerializacionUtil.cargarUsuariosBinario();
-        if (usuarios == null) {
-            usuarios = SerializacionUtil.cargarUsuariosXML();
+        List<Usuario> usuarios2 = SerializacionUtil.cargarUsuariosBinario();
+        if (usuarios2 == null) {
+            usuarios2 = SerializacionUtil.cargarUsuariosXML();
         }
-        // Establecer la lista de usuarios en el controlador o en la aplicación
+
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/LoginView.fxml"));
         VBox raiz = loader.load();
