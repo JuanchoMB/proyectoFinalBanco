@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyectofinalbancouq.controllers;
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import co.edu.uniquindio.proyectofinalbancouq.util.ArchivoUtil;
 import co.edu.uniquindio.proyectofinalbancouq.util.LogUtil;
+import co.edu.uniquindio.proyectofinalbancouq.util.SerializacionUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -48,6 +49,11 @@ public class RegistroController {
 
             // Guardar los usuarios en el archivo de texto
             ArchivoUtil.guardarUsuarios(usuariosRegistrados);
+
+            SerializacionUtil.guardarUsuariosBinario(usuariosRegistrados);
+
+            // Guardar usuarios en formato XML
+            SerializacionUtil.guardarUsuariosXML(usuariosRegistrados);
 
             // Registrar en el archivo Log
             LogUtil.registrarAccion(nuevoUsuario.getId(), "Nuevo usuario registrado");
