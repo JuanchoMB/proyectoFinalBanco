@@ -9,7 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class LoginController {
+public class InicioSesionController {
 
     @FXML
     private TextField campoID;
@@ -55,11 +55,17 @@ public class LoginController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/PrincipalView.fxml"));
             VBox pantallaPrincipal = loader.load();
+
+            // Obtener el controlador del PrincipalController
+            PrincipalController principalController = loader.getController();
+            principalController.setUsuarioActual(usuarioActual); // Pasar el usuario actual al PrincipalController
+
+            // Cambiar la escena para mostrar la vista principal
             Scene escenaPrincipal = new Scene(pantallaPrincipal);
             Stage stage = (Stage) campoID.getScene().getWindow();
             stage.setScene(escenaPrincipal);
+            stage.show();
         } catch (Exception e) {
-            // Registrar la excepción en el log
             LogUtil.registrarExcepcion(e);
         }
     }

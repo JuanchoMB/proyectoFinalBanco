@@ -2,27 +2,28 @@ package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import co.edu.uniquindio.proyectofinalbancouq.util.ArchivoUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
+import javafx.scene.control.TextField;
 import java.util.List;
 
 public class ModificarDatosController {
 
     @FXML
     private TextField txtNombreCompleto, txtCorreo, txtDireccion, txtTelefono;
-
     @FXML
-    private PasswordField txtContraseña; // Es un PasswordField, asegúrate de usarlo correctamente
+    private PasswordField txtContraseña; // Cambia de TextField a PasswordField
 
     private Usuario usuarioActual;
 
-    // Establecer el usuario actual
+    // Establecer el usuario actual desde el controlador principal
     public void setUsuarioActual(Usuario usuario) {
         this.usuarioActual = usuario;
-        cargarDatosUsuario();
+        if (usuarioActual != null) {
+            cargarDatosUsuario(); // Cargar los datos del usuario
+        }
     }
 
     // Cargar los datos actuales del usuario en los campos de texto
@@ -31,18 +32,23 @@ public class ModificarDatosController {
         txtCorreo.setText(usuarioActual.getCorreo());
         txtDireccion.setText(usuarioActual.getDireccion());
         txtTelefono.setText(usuarioActual.getTelefono());
-        txtContraseña.setText(usuarioActual.getContraseña());
+        txtContraseña.setText(usuarioActual.getContraseña()); // Cargar la contraseña, pero se verá enmascarada
     }
 
-    // Método que se ejecutará al hacer clic en el botón "Guardar Cambios"
     @FXML
     public void guardarCambios(ActionEvent event) {
+        // Verificar que usuarioActual no sea null
+        if (usuarioActual == null) {
+            System.out.println("Error: usuarioActual es null.");
+            return;
+        }
+
         // Actualizar los datos del usuario con los valores introducidos
         usuarioActual.setNombreCompleto(txtNombreCompleto.getText());
         usuarioActual.setCorreo(txtCorreo.getText());
         usuarioActual.setDireccion(txtDireccion.getText());
         usuarioActual.setTelefono(txtTelefono.getText());
-        usuarioActual.setContraseña(txtContraseña.getText());
+        usuarioActual.setContraseña(txtContraseña.getText()); // Obtener la contraseña del PasswordField
 
         // Guardar los usuarios actualizados en el archivo
         List<Usuario> usuarios = ArchivoUtil.cargarUsuarios();
@@ -62,3 +68,4 @@ public class ModificarDatosController {
         stage.close();
     }
 }
+

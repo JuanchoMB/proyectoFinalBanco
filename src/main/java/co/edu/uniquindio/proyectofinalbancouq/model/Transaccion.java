@@ -24,7 +24,7 @@ public class Transaccion {
     }
 
     public TipoTransaccion getTipo() {
-        return tipoTransaccion;  // Asegúrate de que este método esté presente
+        return tipoTransaccion;
     }
 
     public LocalDateTime getFecha() {

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="399.0" prefWidth="366.0" spacing="20.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.LoginController">
+<VBox alignment="CENTER" prefHeight="399.0" prefWidth="366.0" spacing="20.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.InicioSesionController">
     <Label prefHeight="66.0" prefWidth="221.0" text="Inicio de Sesión" textFill="#bcbcbc" textOverrun="CLIP">
       <font>
          <Font name="Impact" size="32.0" />

@@ -7,11 +7,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="398.0" prefWidth="654.0" spacing="10" style="-fx-background-color: #525252;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.MainController">
-    <Label alignment="BOTTOM_CENTER" prefHeight="30.0" prefWidth="194.0" text="Billetera Virtual" textFill="WHITE">
+<VBox alignment="CENTER" prefHeight="398.0" prefWidth="654.0" spacing="10" style="-fx-background-color: #525252;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.PrincipalController">
+    <Label alignment="BOTTOM_CENTER" prefHeight="46.0" prefWidth="194.0" text="Billetera Virtual" textFill="WHITE">
       <font>
          <Font name="Impact" size="20.0" />
-      </font></Label>
+      </font>
+      <VBox.margin>
+         <Insets bottom="20.0" />
+      </VBox.margin></Label>
+   <Button alignment="TOP_CENTER" mnemonicParsing="false" onAction="#modificarDatosPersonales" opacity="0.7" prefHeight="50.0" style="-fx-background-color: white;" text="Editar perfil">
+      <VBox.margin>
+         <Insets left="500.0" />
+      </VBox.margin>
+   </Button>
     <Label prefHeight="17.0" prefWidth="580.0" text="Saldo actual:" textFill="WHITE">
       <font>
          <Font name="System Italic" size="12.0" />
@@ -23,12 +31,7 @@
     <ListView fx:id="listaTransacciones" prefHeight="200.0" prefWidth="620.0" style="-fx-background-color: #5f5f5f;" />
     <Button alignment="TOP_CENTER" onAction="#manejarDeposito" opacity="0.71" prefHeight="25.0" prefWidth="120.0" text="Depositar" />
     <Button onAction="#manejarRetiro" opacity="0.78" prefHeight="25.0" prefWidth="123.0" text="Retirar" />
-   <Button mnemonicParsing="false" onAction="#modificarDatosPersonales" style="-fx-background-color: white;" text="editar perfil">
-      <VBox.margin>
-         <Insets right="550.0" />
-      </VBox.margin>
-   </Button>
-   <Button alignment="TOP_CENTER" onAction="#volverALogin" opacity="0.71" prefHeight="25.0" prefWidth="120.0" text="Regresar">
+   <Button alignment="TOP_CENTER" onAction="#volverALogin" opacity="0.71" prefHeight="25.0" prefWidth="121.0" text="Cerrar billetera">
       <VBox.margin>
          <Insets bottom="30.0" right="506.0" />
       </VBox.margin>

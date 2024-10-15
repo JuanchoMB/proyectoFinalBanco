@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class MainController {
+public class PrincipalController {
 
     @FXML
     private Label etiquetaSaldo;
@@ -27,7 +27,7 @@ public class MainController {
     private Usuario usuarioActual;
     public Label etiquetaMensaje;
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuarioActual(Usuario usuario) {
         this.usuarioActual = usuario;
         actualizarUI();
     }
@@ -95,7 +95,7 @@ public class MainController {
 
             // Obtener el controlador de la nueva vista
             ModificarDatosController modificarController = loader.getController();
-            modificarController.setUsuarioActual(usuarioActual);
+            modificarController.setUsuarioActual(usuarioActual); // Pasar el usuario actual
 
             // Crear una nueva ventana para la modificación de datos
             Stage stage = new Stage();
@@ -105,10 +105,6 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public void setUsuarioActual(Usuario usuario) {
-        this.usuarioActual = usuario;
     }
 }
 

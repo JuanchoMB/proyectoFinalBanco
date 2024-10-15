@@ -21,7 +21,7 @@ public class Usuario {
         this.direccion = direccion;
         this.telefono = telefono;
         this.contraseña = contraseña;
-        this.saldo = 0.0;
+        this.saldo = 100.000;
         this.transacciones = new ArrayList<>();
     }
 
