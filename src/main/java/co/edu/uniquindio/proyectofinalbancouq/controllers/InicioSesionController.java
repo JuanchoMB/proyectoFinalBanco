@@ -2,6 +2,7 @@ package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import co.edu.uniquindio.proyectofinalbancouq.util.LogUtil;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -22,13 +23,37 @@ public class InicioSesionController {
 
     private Usuario usuarioActual;
 
+
+    void iniciarSesion(ActionEvent event) {
+        String correo = txtCorreo.getText();
+        String contraseña = txtContraseña.getText();
+        if (correo.equals("admin@unieventos.com") && contraseña.equals("admin123")) {
+            uniEventos.loadStage("/ventanas/admin.fxml", event);
+        } else {
+            if (uniEventos.verificarCredenciales(correo, contraseña)) {
+                if (!uniEventos.clienteValidado(correo)) {
+                    uniEventos.mostrarVentanaCodigoActivacion(correo, (Stage) txtCorreo.getScene().getWindow());
+                } else {
+                    uniEventos.loadStage("/ventanas/inicio.fxml", event);
+                    uniEventos.mostrarMensaje(Alert.AlertType.INFORMATION, "Inicio de sesión exitoso.");
+                }
+            } else {
+                uniEventos.mostrarMensaje(Alert.AlertType.ERROR, "Inicio de sesión fallido. Por favor, verifique sus credenciales.");
+            }
+        }
+    }
+
+
+
     @FXML
     private void manejarIniciarSesion() {
         String id = campoID.getText();
         String contraseña = campoContraseña.getText();
 
         usuarioActual = verificarCredenciales(id, contraseña);
+        if(id.equals("admin@billetera.com")&& contraseña.equals("admin123")){
 
+        }
         if (usuarioActual != null) {
             etiquetaMensaje.setText("Inicio de sesión exitoso");
             // Registrar en el archivo Log el inicio de sesión
