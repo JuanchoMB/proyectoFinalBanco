@@ -8,18 +8,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
+import co.edu.uniquindio.proyectofinalbancouq.model.Transaccion;
 
 public class Billetera implements Serializable {
-
-
-
-
-
-
-
-
-
 
     public void loadStage(String url, Event event) {
         try {
@@ -33,4 +26,5 @@ public class Billetera implements Serializable {
             ex.printStackTrace();
         }
     }
+
 }

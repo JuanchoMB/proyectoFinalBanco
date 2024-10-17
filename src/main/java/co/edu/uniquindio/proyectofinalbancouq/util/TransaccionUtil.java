@@ -11,21 +11,16 @@ public class TransaccionUtil {
 
     private static final String TRANSACCION_PATH = "C:/td/persistencia/transacciones.txt";
 
-
     // Guardar una nueva transacción
     public static void guardarTransaccion(Transaccion transaccion) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRANSACCION_PATH, true))) {
             writer.write(transaccion.getIdTransaccion() + "@@" + transaccion.getCantidad() + "@@" +
                     transaccion.getTipo() + "@@" + transaccion.getFecha() + "\n");
-
+            ArchivoUtil.respaldarArchivo(TRANSACCION_PATH);
         }
-
         catch (IOException e) {
             LogUtil.registrarExcepcion(e);
         }
     }
-
-    // Realizar respaldo
-
-    }
+}
 

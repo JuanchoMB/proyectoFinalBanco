@@ -10,7 +10,7 @@ public class LogUtil {
 
     private static final String LOG_PATH = "C:/td/persistencia/logs/log.txt";
 
-    // Método para asegurarse de que la carpeta exista
+    // Metodo para asegurarse de que la carpeta exista
     private static void verificarCarpetaLogs() {
         File carpeta = new File("C:/td/persistencia/logs");
         if (!carpeta.exists()) {

@@ -89,6 +89,16 @@ public class Usuario implements Serializable {
         return saldo;
     }
 
+
+    public String toString() {
+        return "Usuario{" +
+                "nombre='" + nombreCompleto+ '\'' +
+                ", id='" + id + '\'' +
+                ", correo='" + correo + '\'' +
+                ", direccion='" + direccion + '\'' +
+                ", telefono='" + telefono + '\'' +
+                '}';
+    }
     public void depositar(double cantidad) {
         saldo += cantidad;
         String idTransaccion = "DEP-" + System.currentTimeMillis(); // Generar un ID único para la transacción
@@ -109,15 +119,6 @@ public class Usuario implements Serializable {
 
     public List<Transaccion> getTransacciones() {
         return transacciones;
-    }
-    public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombreCompleto+ '\'' +
-                ", id='" + id + '\'' +
-                ", correo='" + correo + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
     }
 }
 

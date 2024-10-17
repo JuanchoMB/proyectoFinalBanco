@@ -16,6 +16,17 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.Pane;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.event.ActionEvent;
+
 public class PrincipalController {
 
     @FXML
@@ -32,7 +43,7 @@ public class PrincipalController {
         actualizarUI();
     }
 
-    private void actualizarUI() {
+    public void actualizarUI() {
         etiquetaSaldo.setText(String.valueOf(usuarioActual.getSaldo()));
         listaTransacciones.getItems().clear();
         for (Transaccion transaccion : usuarioActual.getTransacciones()) {
@@ -42,7 +53,7 @@ public class PrincipalController {
 
     @FXML
     private void manejarDeposito() {
-        double cantidadDeposito = 100.0; // Ejemplo
+        double cantidadDeposito = 50; // Ejemplo
         usuarioActual.depositar(cantidadDeposito);
         Transaccion transaccion = new Transaccion("DEP-" + System.currentTimeMillis(), cantidadDeposito, TipoTransaccion.DEPOSITO, null);
 
@@ -57,20 +68,27 @@ public class PrincipalController {
 
     @FXML
     private void manejarRetiro() {
-        double cantidadRetiro = 50.0; // Ejemplo
-        if (usuarioActual.getSaldo() >= cantidadRetiro) {
-            usuarioActual.retirar(cantidadRetiro);
-            Transaccion transaccion = new Transaccion("RET-" + System.currentTimeMillis(), cantidadRetiro, TipoTransaccion.RETIRO, null);
+        System.out.println("Botón de Retiro presionado");
+        try {
+            // Cargar la interfaz de retiro desde el archivo FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/RetiroView.fxml"));
+            Parent root = loader.load();
 
-            // Guardar la transacción
-            TransaccionUtil.guardarTransaccion(transaccion);
+            // Obtener el controlador de retiro
+            RetiroController retiroController = loader.getController();
 
-            // Registrar en el archivo Log
-            LogUtil.registrarAccion(usuarioActual.getId(), "Retiro realizado: " + cantidadRetiro);
+            // Pasar el usuario actual al controlador de retiro
+            retiroController.setUsuarioActual(usuarioActual);
+            // Pasar la referencia del PrincipalController
+            retiroController.setPrincipalController(this); // Asegúrate de que esto se llame
 
-            actualizarUI();
-        } else {
-            etiquetaMensaje.setText("Saldo insuficiente.");
+            // Crear una nueva ventana para el retiro
+            Stage stage = new Stage();
+            stage.setTitle("Retiro de Dinero");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            LogUtil.registrarExcepcion(e);
         }
     }
 
@@ -86,6 +104,7 @@ public class PrincipalController {
             LogUtil.registrarExcepcion(e);
         }
     }
+
     @FXML
     public void modificarDatosPersonales(ActionEvent event) {
         try {
@@ -107,4 +126,5 @@ public class PrincipalController {
         }
     }
 }
+
 

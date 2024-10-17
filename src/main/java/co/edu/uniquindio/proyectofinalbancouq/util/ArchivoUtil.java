@@ -50,15 +50,6 @@ public class ArchivoUtil {
         }
     }
 
-
-    private static void verificarCarpetaArchivos() {
-        File carpeta = new File("C:/td/persistencia/archivos");
-        if (!carpeta.exists()) {
-            carpeta.mkdirs(); // Crea la carpeta y todas las necesarias
-        }
-    }
-
-
     // Guardar usuarios en el archivo
     public static void guardarUsuarios(List<Usuario> usuarios) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(USUARIO_PATH))) {
@@ -85,7 +76,7 @@ public class ArchivoUtil {
 
                 String[] datos = linea.split("@@");
 
-                // Verificar que el número de elementos sea el esperado (6 en este caso)
+                // Verificar que el número de elementos sea el esperado
                 if (datos.length == 6) {
                     // Crear el objeto Usuario con los datos
                     Usuario usuario = new Usuario(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);

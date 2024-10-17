@@ -1,10 +1,14 @@
 package co.edu.uniquindio.proyectofinalbancouq.util;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
+import org.w3c.dom.Document;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.beans.XMLEncoder;
 import java.beans.XMLDecoder;
 import java.io.*;
+import java.util.LinkedList;
 import java.util.List;
 
 public class SerializacionUtil {
@@ -29,16 +33,6 @@ public class SerializacionUtil {
         }
         return null;
     }
-
-    // Serialización XML
-    public static void guardarUsuariosXML(List<Usuario> usuarios) {
-        try (XMLEncoder encoder = new XMLEncoder(new FileOutputStream(XML_PATH))) {
-            encoder.writeObject(usuarios);
-        } catch (IOException e) {
-            LogUtil.registrarExcepcion(e);
-        }
-    }
-
     public static List<Usuario> cargarUsuariosXML() {
         try (XMLDecoder decoder = new XMLDecoder(new FileInputStream(XML_PATH))) {
             return (List<Usuario>) decoder.readObject();
@@ -46,5 +40,13 @@ public class SerializacionUtil {
             LogUtil.registrarExcepcion(e);
         }
         return null;
+    }
+    // Serialización XML
+    public static void guardarUsuariosXML(List<Usuario> usuarios) {
+        try (XMLEncoder encoder = new XMLEncoder(new FileOutputStream(XML_PATH))) {
+            encoder.writeObject(usuarios);
+        } catch (IOException e) {
+            LogUtil.registrarExcepcion(e);
+        }
     }
 }

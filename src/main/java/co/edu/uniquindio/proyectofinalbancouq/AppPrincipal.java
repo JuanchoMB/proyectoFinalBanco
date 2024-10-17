@@ -19,7 +19,7 @@ public class AppPrincipal extends Application {
 
         // Cargar usuarios desde el archivo de texto
         List<Usuario> usuarios = ArchivoUtil.cargarUsuarios();
-        RegistroController.setUsuariosRegistrados(usuarios); // Asegúrate de que este método esté definido en RegistroController
+        RegistroController.setUsuariosRegistrados(usuarios); // Asegúrate de que este metodo esté definido en RegistroController
         // Cargar usuarios desde archivo binario o XML al iniciar
         List<Usuario> usuarios2 = SerializacionUtil.cargarUsuariosBinario();
         if (usuarios2 == null) {
