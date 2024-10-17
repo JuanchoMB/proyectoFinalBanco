@@ -1,6 +1,10 @@
 package co.edu.uniquindio.proyectofinalbancouq.model;
 
-public class Cuenta {
+import java.io.Serializable;
+
+public class Cuenta implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private  String idCuenta;
     private String nombreBanco;

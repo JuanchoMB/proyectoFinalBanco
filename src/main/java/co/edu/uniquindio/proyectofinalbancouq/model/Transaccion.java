@@ -1,8 +1,11 @@
 package co.edu.uniquindio.proyectofinalbancouq.model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Transaccion {
+public class Transaccion implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private String idTransaccion;
     private double cantidad;
     private TipoTransaccion tipoTransaccion;

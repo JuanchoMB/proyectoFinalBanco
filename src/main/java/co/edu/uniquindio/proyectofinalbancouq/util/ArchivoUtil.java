@@ -3,12 +3,61 @@ package co.edu.uniquindio.proyectofinalbancouq.util;
 
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArchivoUtil {
 
     private static final String USUARIO_PATH = "C:/td/persistencia/archivos/usuarios.txt";
+    private static final String RESPALDO_PATH = "C:/td/persistencia/archivos/respaldo/";
+
+
+    public static void respaldarArchivo(String archivoOriginal) {
+        File archivo = new File(archivoOriginal);
+
+        if (archivo.exists()) {
+            try {
+                // Obtener el nombre del archivo sin la ruta
+                String nombreArchivo = archivo.getName();
+
+                // Generar el nombre del archivo de respaldo con timestamp
+                String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+                String nombreRespaldo = nombreArchivo.replace(".txt", "_respaldo_" + timestamp + ".txt");
+
+                // Ruta del archivo de respaldo
+                File archivoRespaldo = new File(RESPALDO_PATH + nombreRespaldo);
+
+                // Crear la carpeta de respaldo si no existe
+                if (!archivoRespaldo.getParentFile().exists()) {
+                    archivoRespaldo.getParentFile().mkdirs();
+                }
+
+                // Copiar el archivo original al archivo de respaldo
+                Files.copy(archivo.toPath(), archivoRespaldo.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                System.out.println("Respaldo realizado: " + archivoRespaldo.getAbsolutePath());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("Error al realizar el respaldo del archivo: " + archivoOriginal);
+            }
+        } else {
+            System.out.println("El archivo original no existe: " + archivoOriginal);
+        }
+    }
+
+
+    private static void verificarCarpetaArchivos() {
+        File carpeta = new File("C:/td/persistencia/archivos");
+        if (!carpeta.exists()) {
+            carpeta.mkdirs(); // Crea la carpeta y todas las necesarias
+        }
+    }
+
 
     // Guardar usuarios en el archivo
     public static void guardarUsuarios(List<Usuario> usuarios) {
@@ -18,6 +67,7 @@ public class ArchivoUtil {
                         usuario.getCorreo() + "@@" + usuario.getDireccion() + "@@" +
                         usuario.getTelefono() + "@@" + usuario.getContraseña() + "\n");
             }
+            ArchivoUtil.respaldarArchivo(USUARIO_PATH);
         } catch (IOException e) {
             LogUtil.registrarExcepcion(e);
         }
@@ -52,5 +102,6 @@ public class ArchivoUtil {
         }
         return usuarios;
     }
-
 }
+
+
