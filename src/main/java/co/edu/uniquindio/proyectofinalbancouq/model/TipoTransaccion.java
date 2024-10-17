@@ -5,5 +5,4 @@ public enum TipoTransaccion {
     RETIRO,
     TRANSFERENCIA
 
-
 }
