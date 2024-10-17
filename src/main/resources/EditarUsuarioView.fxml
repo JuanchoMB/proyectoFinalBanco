@@ -25,37 +25,37 @@
       </font>
    </Label>
 
-    <!-- Nombre Completo -->
+
     <HBox alignment="CENTER" spacing="10">
         <Label prefHeight="17.0" prefWidth="119.0" text="Nombre Completo:" textFill="WHITE" />
         <TextField fx:id="txtNombreCompleto" prefHeight="25.0" prefWidth="229.0" promptText="Nombre Completo" />
     </HBox>
 
-    <!-- Correo -->
+
     <HBox alignment="CENTER" spacing="10">
         <Label prefHeight="17.0" prefWidth="117.0" text="Correo:" textFill="WHITE" />
         <TextField fx:id="txtCorreo" prefHeight="25.0" prefWidth="226.0" promptText="Correo" />
     </HBox>
 
-    <!-- Dirección -->
+
     <HBox alignment="CENTER" spacing="10">
         <Label prefHeight="17.0" prefWidth="115.0" text="Dirección:" textFill="WHITE" />
         <TextField fx:id="txtDireccion" prefHeight="25.0" prefWidth="225.0" promptText="Dirección" />
     </HBox>
 
-    <!-- Teléfono -->
+
     <HBox alignment="CENTER" spacing="10">
         <Label prefHeight="17.0" prefWidth="113.0" text="Teléfono:" textFill="WHITE" />
         <TextField fx:id="txtTelefono" prefHeight="25.0" prefWidth="223.0" promptText="Teléfono" />
     </HBox>
 
-    <!-- Contraseña -->
+
     <HBox alignment="CENTER" spacing="10">
         <Label prefHeight="17.0" prefWidth="112.0" text="Contraseña:" textFill="WHITE" />
         <PasswordField fx:id="txtContraseña" prefHeight="25.0" prefWidth="223.0" promptText="Contraseña" />
     </HBox>
 
-    <!-- Botón Guardar Cambios -->
+
     <Button onAction="#guardarCambios" text="Guardar Cambios">
       <VBox.margin>
          <Insets top="40.0" />

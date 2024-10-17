@@ -16,49 +16,48 @@
         </font>
     </Label>
 
-    <!-- Campo Nombre Completo -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="122.0" text="Nombre Completo:" textFill="WHITE" />
         <TextField fx:id="nombreField" prefHeight="25.0" prefWidth="231.0" promptText="Nombre Completo" />
     </HBox>
 
-    <!-- Campo ID -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="123.0" text="ID:" textFill="WHITE" />
         <TextField fx:id="idField" prefHeight="25.0" prefWidth="231.0" promptText="ID" />
     </HBox>
 
-    <!-- Campo Correo Electrónico -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="123.0" text="Correo Electrónico:" textFill="WHITE" />
         <TextField fx:id="correoField" prefHeight="25.0" prefWidth="231.0" promptText="Correo Electrónico" />
     </HBox>
 
-    <!-- Campo Dirección -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="123.0" text="Dirección:" textFill="WHITE" />
         <TextField fx:id="direccionField" prefHeight="25.0" prefWidth="230.0" promptText="Dirección" />
     </HBox>
 
-    <!-- Campo Teléfono -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="122.0" text="Teléfono:" textFill="WHITE" />
         <TextField fx:id="telefonoField" prefHeight="25.0" prefWidth="231.0" promptText="Teléfono" />
     </HBox>
 
-    <!-- Campo Contraseña -->
+
     <HBox alignment="CENTER_LEFT" spacing="10">
         <Label alignment="TOP_CENTER" prefHeight="17.0" prefWidth="121.0" text="Contraseña:" textFill="WHITE" />
         <TextField fx:id="contrasenaField" prefHeight="25.0" prefWidth="233.0" promptText="Contraseña" />
     </HBox>
 
-    <!-- Botón Registrar -->
+
     <Button onAction="#registrarUsuario" opacity="0.75" prefHeight="25.0" prefWidth="131.0" text="Registrar" />
 
-    <!-- Botón Volver a Iniciar Sesión -->
     <Button onAction="#volverALogin" opacity="0.85" text="Volver a Iniciar Sesión" />
 
-    <!-- Etiqueta para mensajes -->
+
     <Label fx:id="etiquetaMensaje" alignment="TOP_CENTER" prefHeight="64.0" prefWidth="268.0" text="" textFill="#42a150">
       <font>
          <Font name="System Bold Italic" size="10.0" />

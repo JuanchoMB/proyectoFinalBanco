@@ -14,7 +14,6 @@ public class Cuenta {
         this.numeroCuenta = numeroCuenta;
         this.tipoCuenta = tipoCuenta;
 
-
     }
     public String getIdCuenta() {
         return idCuenta;

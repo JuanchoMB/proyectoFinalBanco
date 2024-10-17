@@ -87,7 +87,7 @@ public class Usuario {
 
     public void depositar(double cantidad) {
         saldo += cantidad;
-        String idTransaccion = "DEP-" + System.currentTimeMillis(); // Generar un ID único para la transacción
+        String idTransaccion = "DEPOSITO-" + System.currentTimeMillis(); // Generar un ID único para la transacción
         Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.DEPOSITO, null);
         transacciones.add(nuevaTransaccion);
     }
@@ -95,7 +95,7 @@ public class Usuario {
     public void retirar(double cantidad) {
         if (cantidad <= saldo) {
             saldo -= cantidad;
-            String idTransaccion = "RET-" + System.currentTimeMillis(); // Generar un ID único para la transacción
+            String idTransaccion = "RETIRO-" + System.currentTimeMillis(); // Generar un ID único para la transacción
             Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.RETIRO, null);
             transacciones.add(nuevaTransaccion);
         } else {
