@@ -31,7 +31,8 @@ public class Usuario implements Serializable {
         this.transacciones = new ArrayList<>();
     }
 
-    public Usuario(){}
+    public Usuario() {
+    }
 
     public String getId() {
         return id;
@@ -98,7 +99,7 @@ public class Usuario implements Serializable {
         if (transaccion.getCuentaOrigen() == null || transaccion.getCuentaDestino() == null) {
             throw new IllegalArgumentException("Una de las cuentas no está válida.");
         }
-        setDireccion(" "+transaccion.getCuentaOrigen());
+        setDireccion(" " + transaccion.getCuentaOrigen());
         // Agregar la transacción a la lista
         transacciones.add(transaccion);
 
@@ -108,7 +109,7 @@ public class Usuario implements Serializable {
             transaccion.getCuentaOrigen().setSaldo(transaccion.getCuentaOrigen().getSaldo() - transaccion.getMonto());
             transaccion.getCuentaDestino().setSaldo(transaccion.getCuentaDestino().getSaldo() + transaccion.getMonto());
 
-            setSaldoTotal(getSaldoTotal()-transaccion.getMonto());
+            setSaldoTotal(getSaldoTotal() - transaccion.getMonto());
             // Actualizar el saldo total del usuario (si corresponde)
             actualizarSaldoTotal();
         }
@@ -117,14 +118,16 @@ public class Usuario implements Serializable {
     public List<Transaccion> getTransacciones() {
         return transacciones;
     }
+
     public String toString() {
         return "Usuario{" +
-                "nombre='" + nombreCompleto+ '\'' +
+                "nombre='" + nombreCompleto + '\'' +
                 ", id='" + id + '\'' +
                 ", correo='" + correo + '\'' +
                 ", direccion='" + direccion + '\'' +
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
+}
 }
 
