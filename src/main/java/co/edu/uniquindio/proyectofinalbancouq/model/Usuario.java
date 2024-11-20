@@ -97,6 +97,17 @@ public class Usuario implements Serializable {
         return saldo;
     }
 
+    public LinkedList<Cuenta> getCuentasAsociadas() {
+        return cuentasAsociadas;
+    }
+
+    public void setCuentasAsociadas(LinkedList<Cuenta> cuentasAsociadas) {
+        this.cuentasAsociadas = cuentasAsociadas;
+    }
+
+    public LinkedList<Transaccion> getTransaccionesAsociadas() {
+        return (LinkedList<Transaccion>) transacciones;
+    }
 
     public void actualizarSaldoTotal() {
         double nuevoSaldoTotal = 0.0;
@@ -126,27 +137,28 @@ public class Usuario implements Serializable {
             setSaldo(getSaldo() - transaccion.getMonto());
             // Actualizar el saldo total del usuario (si corresponde)
             actualizarSaldoTotal();
-        }
+        }}
 
         public void añadirCuenta (Cuenta cuenta){
             cuentasAsociadas.add(cuenta);
-            this.saldoTotal+=cuenta.getSaldo();
+            this.saldo += cuenta.getSaldo();
         }
+
+
+        public List<Transaccion> getTransacciones () {
+            return transacciones;
+        }
+
+        public String toString () {
+            return "Usuario{" +
+                    "nombre='" + nombreCompleto + '\'' +
+                    ", id='" + id + '\'' +
+                    ", correo='" + correo + '\'' +
+                    ", direccion='" + direccion + '\'' +
+                    ", telefono='" + telefono + '\'' +
+                    '}';
+        }
+
     }
 
-    public List<Transaccion> getTransacciones() {
-        return transacciones;
-    }
-
-    public String toString() {
-        return "Usuario{" +
-                "nombre='" + nombreCompleto + '\'' +
-                ", id='" + id + '\'' +
-                ", correo='" + correo + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                '}';
-    }
-
-}
 

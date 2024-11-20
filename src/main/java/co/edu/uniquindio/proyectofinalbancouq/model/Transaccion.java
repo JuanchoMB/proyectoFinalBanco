@@ -19,7 +19,7 @@ public class Transaccion implements Serializable {
     private Categoria categoria; // Categoría opcional para organizar la transacción
 
     // Constructor para Depósitos y Retiros
-    public Transaccion(Usuario usuario String idTransaccion, double monto, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String descripcion, Categoria categoria) {
+    public Transaccion(Usuario usuario, String idTransaccion, double monto, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String descripcion, Categoria categoria) {
         this.usuario=usuario;
         this.idTransaccion = idTransaccion;
         this.monto = monto;
