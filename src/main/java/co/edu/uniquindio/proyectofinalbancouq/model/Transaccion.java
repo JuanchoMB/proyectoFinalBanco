@@ -8,7 +8,7 @@ public class Transaccion implements Serializable {
     private Usuario usuario;
     private static final long serialVersionUID = 1L;
     private String idTransaccion;
-    private double cantidad;
+    private double monto;
     private TipoTransaccion tipoTransaccion;
     private LocalDateTime fecha;
     private String descripcion; // Descripción opcional
@@ -17,10 +17,10 @@ public class Transaccion implements Serializable {
     private Categoria categoria; // Categoría opcional para organizar la transacción
 
     // Constructor para Depósitos y Retiros
-    public Transaccion(Usuario usuario String idTransaccion, double cantidad, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String descripcion, Categoria categoria) {
+    public Transaccion(Usuario usuario String idTransaccion, double monto, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String descripcion, Categoria categoria) {
         this.usuario=usuario;
         this.idTransaccion = idTransaccion;
-        this.cantidad = cantidad;
+        this.monto = monto;
         this.tipoTransaccion = tipoTransaccion;
         this.fecha = LocalDateTime.now();
         this.descripcion = descripcion;
@@ -34,8 +34,8 @@ public class Transaccion implements Serializable {
         return idTransaccion;
     }
 
-    public double getCantidad() {
-        return cantidad;
+    public double getMonto() {
+        return monto;
     }
 
     public TipoTransaccion getTipoTransaccion() {
@@ -80,6 +80,7 @@ public class Transaccion implements Serializable {
 
     @Override
     public String toString() {
-        return idTransaccion + " - " + tipoTransaccion + ": " + cantidad + " - " + fecha.toString() + " - " + descripcion;
+        return idTransaccion + " - " + tipoTransaccion + ": " + monto + " - " + fecha.toString() + " - " + descripcion;
     }
+
 }

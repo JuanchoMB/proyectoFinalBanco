@@ -4,8 +4,6 @@ import co.edu.uniquindio.proyectofinalbancouq.model.Transaccion;
 
 
 import java.io.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class TransaccionUtil {
 
@@ -15,7 +13,7 @@ public class TransaccionUtil {
     // Guardar una nueva transacción
     public static void guardarTransaccion(Transaccion transaccion) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRANSACCION_PATH, true))) {
-            writer.write(transaccion.getIdTransaccion() + "@@" + transaccion.getCantidad() + "@@" +
+            writer.write(transaccion.getIdTransaccion() + "@@" + transaccion.getMonto() + "@@" +
                     transaccion.getTipoTransaccion() + "@@" + transaccion.getFecha() + "\n");
             ArchivoUtil.respaldarArchivo(TRANSACCION_PATH);
         }

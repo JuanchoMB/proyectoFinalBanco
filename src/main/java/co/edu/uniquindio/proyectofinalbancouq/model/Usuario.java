@@ -93,41 +93,24 @@ public class Usuario implements Serializable {
         return saldo;
     }
 
-    public void depositar(double cantidad, String descripcion, Cuenta cuentaDestino, Categoria categoria) {
-        if (cantidad > 0) {
-            saldo += cantidad;
-
-            // Crear nueva transacción de depósito
-            String idTransaccion = "DEP-" + System.currentTimeMillis();
-            Transaccion transaccion = new Transaccion(usuario, idTransaccion, cantidad, TipoTransaccion.DEPOSITO, null, cuentaDestino, descripcion, categoria);
-
-            // Añadir la transacción a la lista del usuario
-            transacciones.add(transaccion);
-
-            // Registrar la transacción
-            TransaccionUtil.guardarTransaccion(transaccion);
+    public void añadirTransaccion(Transaccion transaccion) {
+        // Verificar que las cuentas de origen y destino no sean nulas
+        if (transaccion.getCuentaOrigen() == null || transaccion.getCuentaDestino() == null) {
+            throw new IllegalArgumentException("Una de las cuentas no está válida.");
         }
-    }
+        setDireccion(" "+transaccion.getCuentaOrigen());
+        // Agregar la transacción a la lista
+        transacciones.add(transaccion);
 
-    // Método para realizar un retiro
-    public boolean retirar(double cantidad, String descripcion, Cuenta cuentaOrigen, Categoria categoria) {
-        if (cantidad > 0 && cantidad <= saldo) {
-            saldo -= cantidad;
+        // Verificar si hay saldo suficiente en la cuenta de origen
+        if (transaccion.getMonto() <= transaccion.getCuentaOrigen().getSaldo()) {
+            // Actualizar el saldo de las cuentas
+            transaccion.getCuentaOrigen().setSaldo(transaccion.getCuentaOrigen().getSaldo() - transaccion.getMonto());
+            transaccion.getCuentaDestino().setSaldo(transaccion.getCuentaDestino().getSaldo() + transaccion.getMonto());
 
-            // Crear nueva transacción de retiro
-            String idTransaccion = "RET-" + System.currentTimeMillis();
-            Transaccion transaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.RETIRO, cuentaOrigen, null, descripcion, categoria);
-
-            // Añadir la transacción a la lista del usuario
-            transacciones.add(transaccion);
-
-            // Registrar la transacción
-            TransaccionUtil.guardarTransaccion(transaccion);
-
-            return true;
-        } else {
-            System.out.println("Saldo insuficiente para el retiro.");
-            return false; // Saldo insuficiente
+            setSaldoTotal(getSaldoTotal()-transaccion.getMonto());
+            // Actualizar el saldo total del usuario (si corresponde)
+            actualizarSaldoTotal();
         }
     }
 
