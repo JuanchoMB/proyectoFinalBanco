@@ -10,40 +10,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="322.0" prefWidth="321.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.TransaccionController">
-    <VBox alignment="CENTER" prefHeight="328.0" prefWidth="321.0" spacing="10" style="-fx-background-color: black;">
+<AnchorPane xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="co.edu.uniquindio.proyectofinalbancouq.controllers.TransaccionController">
+    <VBox alignment="CENTER" spacing="10" style="-fx-background-color: black;">
         <Label text="Realizar Transacción" textFill="WHITE">
-         <font>
-            <Font size="20.0" />
-         </font>
-         <VBox.margin>
-            <Insets bottom="20.0" />
-         </VBox.margin></Label>
-
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
         <TextField fx:id="txtCantidad" promptText="Cantidad" />
         <TextField fx:id="txtDescripcion" promptText="Descripción (opcional)" />
-
         <ComboBox fx:id="cbCuentaOrigen" promptText="Seleccionar cuenta origen" />
         <ComboBox fx:id="cbCuentaDestino" promptText="Seleccionar cuenta destino" />
-
         <ComboBox fx:id="cbCategoria" promptText="Seleccionar categoría" />
-
         <HBox spacing="10">
-            <Button onAction="#manejarDeposito" text="Depositar">
-            <HBox.margin>
-               <Insets left="5.0" />
-            </HBox.margin></Button>
-            <Button onAction="#manejarRetiro" text="Retirar">
-            <HBox.margin>
-               <Insets left="50.0" />
-            </HBox.margin></Button>
-            <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#manejarTransferencia" prefHeight="25.0" prefWidth="81.0" text="Transferir">
-            <opaqueInsets>
-               <Insets />
-            </opaqueInsets>
-            <HBox.margin>
-               <Insets left="40.0" />
-            </HBox.margin></Button>
+            <Button onAction="#manejarDeposito" text="Depositar" />
+            <Button onAction="#manejarRetiro" text="Retirar" />
+            <Button onAction="#manejarTransferencia" text="Transferir" />
         </HBox>
     </VBox>
 </AnchorPane>
+

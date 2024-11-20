@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 public class Transaccion implements Serializable {
 
-
     private static final long serialVersionUID = 1L;
 
     private Usuario usuario;
@@ -13,14 +12,13 @@ public class Transaccion implements Serializable {
     private double monto;
     private TipoTransaccion tipoTransaccion;
     private LocalDateTime fecha;
-    private String descripcion; // Descripción opcional
-    private Cuenta cuentaOrigen; // Cuenta de donde se retira el dinero (solo para retiros y transferencias)
-    private Cuenta cuentaDestino; // Cuenta a donde se deposita el dinero (solo para depósitos y transferencias)
-    private Categoria categoria; // Categoría opcional para organizar la transacción
+    private String descripcion;
+    private Cuenta cuentaOrigen;
+    private Cuenta cuentaDestino;
+    private Categoria categoria;
 
-    // Constructor para Depósitos y Retiros
     public Transaccion(Usuario usuario, String idTransaccion, double monto, TipoTransaccion tipoTransaccion, Cuenta cuentaOrigen, Cuenta cuentaDestino, String descripcion, Categoria categoria) {
-        this.usuario=usuario;
+        this.usuario = usuario;
         this.idTransaccion = idTransaccion;
         this.monto = monto;
         this.tipoTransaccion = tipoTransaccion;
@@ -30,8 +28,7 @@ public class Transaccion implements Serializable {
         this.cuentaDestino = cuentaDestino;
         this.categoria = categoria;
     }
-    public Transaccion(){}
-    // Getters y Setters
+
     public String getIdTransaccion() {
         return idTransaccion;
     }
