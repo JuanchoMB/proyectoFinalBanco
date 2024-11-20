@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyectofinalbancouq.controllers;
 
-import co.edu.uniquindio.proyectofinalbancouq.model.Billetera;
 import co.edu.uniquindio.proyectofinalbancouq.model.Usuario;
 import co.edu.uniquindio.proyectofinalbancouq.util.LogUtil;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -34,7 +32,7 @@ public class InicioSesionController {
 
         usuarioActual = verificarCredenciales(id, contraseña);
         if(id.equals("admin@billetera.com")&& contraseña.equals("admin123")){
-
+        //falta parte del admin
         }
         if (usuarioActual != null) {
             etiquetaMensaje.setText("Inicio de sesión exitoso");
@@ -63,16 +61,17 @@ public class InicioSesionController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/PrincipalView.fxml"));
             VBox pantallaPrincipal = loader.load();
 
-            // Obtener el controlador del PrincipalController
-            PrincipalController principalController = loader.getController();
-            principalController.setUsuarioActual(usuarioActual); // Pasar el usuario actual al PrincipalController
+            // Obtener el controlador del MainController
+            PrincipalController mainController = loader.getController();
+            mainController.setUsuarioActual(usuarioActual); // Pasar el usuario actual al MainController
 
-            // Cambiar la escena para mostrar la vista principal
+            // Mostrar la pantalla principal
             Scene escenaPrincipal = new Scene(pantallaPrincipal);
             Stage stage = (Stage) campoID.getScene().getWindow();
             stage.setScene(escenaPrincipal);
             stage.show();
         } catch (Exception e) {
+            // Registrar la excepción en el log
             LogUtil.registrarExcepcion(e);
         }
     }

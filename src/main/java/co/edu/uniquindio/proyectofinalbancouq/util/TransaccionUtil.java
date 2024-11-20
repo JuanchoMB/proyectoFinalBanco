@@ -16,8 +16,8 @@ public class TransaccionUtil {
     public static void guardarTransaccion(Transaccion transaccion) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(TRANSACCION_PATH, true))) {
             writer.write(transaccion.getIdTransaccion() + "@@" + transaccion.getCantidad() + "@@" +
-                    transaccion.getTipo() + "@@" + transaccion.getFecha() + "\n");
-
+                    transaccion.getTipoTransaccion() + "@@" + transaccion.getFecha() + "\n");
+            ArchivoUtil.respaldarArchivo(TRANSACCION_PATH);
         }
 
         catch (IOException e) {

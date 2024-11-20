@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyectofinalbancouq.model;
 
+import co.edu.uniquindio.proyectofinalbancouq.util.TransaccionUtil;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,8 @@ public class Usuario implements Serializable {
         this.saldo = 100.000;
         this.transacciones = new ArrayList<>();
     }
+
+    public Usuario(){}
 
     public String getId() {
         return id;
@@ -89,21 +93,41 @@ public class Usuario implements Serializable {
         return saldo;
     }
 
-    public void depositar(double cantidad) {
-        saldo += cantidad;
-        String idTransaccion = "DEP-" + System.currentTimeMillis(); // Generar un ID único para la transacción
-        Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.DEPOSITO, null);
-        transacciones.add(nuevaTransaccion);
+    public void depositar(double cantidad, String descripcion, Cuenta cuentaDestino, Categoria categoria) {
+        if (cantidad > 0) {
+            saldo += cantidad;
+
+            // Crear nueva transacción de depósito
+            String idTransaccion = "DEP-" + System.currentTimeMillis();
+            Transaccion transaccion = new Transaccion(usuario, idTransaccion, cantidad, TipoTransaccion.DEPOSITO, null, cuentaDestino, descripcion, categoria);
+
+            // Añadir la transacción a la lista del usuario
+            transacciones.add(transaccion);
+
+            // Registrar la transacción
+            TransaccionUtil.guardarTransaccion(transaccion);
+        }
     }
 
-    public void retirar(double cantidad) {
-        if (cantidad <= saldo) {
+    // Método para realizar un retiro
+    public boolean retirar(double cantidad, String descripcion, Cuenta cuentaOrigen, Categoria categoria) {
+        if (cantidad > 0 && cantidad <= saldo) {
             saldo -= cantidad;
-            String idTransaccion = "RET-" + System.currentTimeMillis(); // Generar un ID único para la transacción
-            Transaccion nuevaTransaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.RETIRO, null);
-            transacciones.add(nuevaTransaccion);
+
+            // Crear nueva transacción de retiro
+            String idTransaccion = "RET-" + System.currentTimeMillis();
+            Transaccion transaccion = new Transaccion(idTransaccion, cantidad, TipoTransaccion.RETIRO, cuentaOrigen, null, descripcion, categoria);
+
+            // Añadir la transacción a la lista del usuario
+            transacciones.add(transaccion);
+
+            // Registrar la transacción
+            TransaccionUtil.guardarTransaccion(transaccion);
+
+            return true;
         } else {
-            throw new IllegalArgumentException("Saldo insuficiente para realizar el retiro.");
+            System.out.println("Saldo insuficiente para el retiro.");
+            return false; // Saldo insuficiente
         }
     }
 

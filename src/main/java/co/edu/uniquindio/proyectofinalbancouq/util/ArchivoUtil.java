@@ -13,6 +13,7 @@ import java.util.List;
 public class ArchivoUtil {
 
     private static final String USUARIO_PATH = "C:/td/persistencia/archivos/usuarios.txt";
+    private static final String TRANSACCION_PATH = "C:/td/persistencia/transacciones.txt";
     private static final String RESPALDO_PATH = "C:/td/persistencia/archivos/respaldo/";
 
 
@@ -102,6 +103,7 @@ public class ArchivoUtil {
         }
         return usuarios;
     }
+
 }
 
 
