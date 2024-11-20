@@ -4,6 +4,7 @@ import co.edu.uniquindio.proyectofinalbancouq.util.TransaccionUtil;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -19,6 +20,7 @@ public class Usuario implements Serializable {
     private String contraseña;
     private double saldo;
     private List<Transaccion> transacciones;
+    private LinkedList<Cuenta> cuentasAsociadas;
 
     public Usuario(String id, String nombreCompleto, String correo, String direccion, String telefono, String contraseña) {
         this.id = id;
@@ -27,8 +29,9 @@ public class Usuario implements Serializable {
         this.direccion = direccion;
         this.telefono = telefono;
         this.contraseña = contraseña;
-        this.saldo = 100.000;
+        this.saldo = saldo;
         this.transacciones = new ArrayList<>();
+        this.cuentasAsociadas = new LinkedList<>();
     }
 
     public Usuario() {
@@ -94,6 +97,17 @@ public class Usuario implements Serializable {
         return saldo;
     }
 
+
+    public void actualizarSaldoTotal() {
+        double nuevoSaldoTotal = 0.0;
+        // Recorremos todas las cuentas asociadas al usuario
+        for (Cuenta cuenta : cuentasAsociadas) {
+            nuevoSaldoTotal += cuenta.getSaldo();  // Sumamos los saldos de todas las cuentas
+        }
+        this.saldo = nuevoSaldoTotal;  // Actualizamos el saldo total
+    }
+
+
     public void añadirTransaccion(Transaccion transaccion) {
         // Verificar que las cuentas de origen y destino no sean nulas
         if (transaccion.getCuentaOrigen() == null || transaccion.getCuentaDestino() == null) {
@@ -109,9 +123,14 @@ public class Usuario implements Serializable {
             transaccion.getCuentaOrigen().setSaldo(transaccion.getCuentaOrigen().getSaldo() - transaccion.getMonto());
             transaccion.getCuentaDestino().setSaldo(transaccion.getCuentaDestino().getSaldo() + transaccion.getMonto());
 
-            setSaldoTotal(getSaldoTotal() - transaccion.getMonto());
+            setSaldo(getSaldo() - transaccion.getMonto());
             // Actualizar el saldo total del usuario (si corresponde)
             actualizarSaldoTotal();
+        }
+
+        public void añadirCuenta (Cuenta cuenta){
+            cuentasAsociadas.add(cuenta);
+            this.saldoTotal+=cuenta.getSaldo();
         }
     }
 
@@ -128,6 +147,6 @@ public class Usuario implements Serializable {
                 ", telefono='" + telefono + '\'' +
                 '}';
     }
-}
+
 }
 

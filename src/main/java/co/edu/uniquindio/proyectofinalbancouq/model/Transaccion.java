@@ -5,8 +5,10 @@ import java.time.LocalDateTime;
 
 public class Transaccion implements Serializable {
 
-    private Usuario usuario;
+
     private static final long serialVersionUID = 1L;
+
+    private Usuario usuario;
     private String idTransaccion;
     private double monto;
     private TipoTransaccion tipoTransaccion;
@@ -62,6 +64,10 @@ public class Transaccion implements Serializable {
         return categoria;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -76,6 +82,9 @@ public class Transaccion implements Serializable {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     @Override
